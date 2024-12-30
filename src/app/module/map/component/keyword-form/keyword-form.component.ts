@@ -26,16 +26,16 @@ export class KeywordFormComponent {
     private modalRef: BsModalRef,
     private fb: FormBuilder,
     private alertService: AlertService,
-    private keywordService: KeywordService
+    private keywordService: KeywordService,
   ) {
     this.keywordForm = this.initForm();
   }
 
   ngOnInit() {
     if (this.keywordId) {
+      console.log(this.keywordId);
       this.label = "Update"
-      this.params = this.params.append("id", this.keywordId);
-      this.keywordService.getById(this.params).subscribe((response) => {
+      this.keywordService.getById(this.keywordId).subscribe((response) => {
         this.keywordForm.patchValue(response);
       })
     }
@@ -44,19 +44,14 @@ export class KeywordFormComponent {
 
   initForm(): FormGroup {
     return this.fb.group({
-      keywordId: [""],
+      id: [""],
       code: [""],
       name: [""],
-      createdBy: [""],
-      createdAt: [""],
-      updatedBy: [""],
-      updatedAt: [""],
-      isDeleted: [""]
     })
   }
 
   saveData() {
-    if (!this.keywordId) {
+    if (this.label !== "Update") {
       this.keywordService.create(this.keywordForm.value).subscribe((response: any) => {
         this.alertService.success('Record added successfully', this.alertOptions);
         this.modalRef.onHidden?.next(true);

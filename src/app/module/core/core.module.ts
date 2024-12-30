@@ -8,7 +8,7 @@ import { SharedService } from './service/shared.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarServiceService } from './service/sidebar-service.service';
 import { RouterModule } from '@angular/router';
-import { TestComponent } from './component/test/test.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,19 +17,17 @@ import { TestComponent } from './component/test/test.component';
     FooterComponent,
     LayoutComponent,
     SidebarComponent,
-    TestComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   exports:[
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
     SidebarComponent,
-    TestComponent
   ],
   providers:[SharedService,SidebarServiceService]
 })
