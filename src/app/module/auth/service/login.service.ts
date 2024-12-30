@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LoginService {
@@ -8,6 +9,6 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   login(obj :any): Observable<any> {
-    return this.http.post<any>(`http://192.168.1.46:8090/login`, obj);
+    return this.http.post<any>(`${environment.baseUrl}/login`, obj);
   }
 }

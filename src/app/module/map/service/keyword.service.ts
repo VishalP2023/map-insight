@@ -15,7 +15,6 @@ export class KeywordService {
   }
 
   getMetadata(): Observable<TableHeaderMetaData> {
-    debugger;
     const token =sessionStorage.getItem('access_token')!;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`, // Replace YOUR_ACCESS_TOKEN with the token variable
