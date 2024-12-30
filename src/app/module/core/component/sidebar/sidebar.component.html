@@ -1,0 +1,18 @@
+<div [class.collapsed]="isCollapsed" class="sidebar">
+  <div class="sidebar-header">
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <i [class]="isCollapsed ? 'fa fa-bars' : 'fa fa-arrow-left'"></i>
+    </button>
+  </div>
+  <ul class="sidebar-list">
+    <li *ngFor="let link of (userRole === 'ADMIN' ? adminLinks : userLinks)">
+      <a [routerLink]="link.route">
+        <i [class]="link.icon"></i>
+        <span *ngIf="!isCollapsed">{{ link.label }}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+

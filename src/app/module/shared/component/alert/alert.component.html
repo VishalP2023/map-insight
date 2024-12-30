@@ -1,0 +1,13 @@
+<div class=" alert-position">
+  <div *ngFor="let alert of alerts"  class="mt-1">
+      <div class="alert-box shadow bg-white rounded d-flex">
+          <div [ngClass]="getBgColor(alert)" class="alert-icon  d-flex px-3 align-items-center">
+            <div [ngClass]="getAlertIcon(alert)" class="white-icons d-flex justify-content-center text-white"></div>
+          </div>
+          <div class="alert-title  bg-white  flex-grow-1 p-3 d-flex justify-content-between align-items-center"> 
+              <span class="text" [innerHTML]="alert.message"></span>
+              <a class="btn-close" (click)="removeAlert(alert)"></a>
+          </div>
+      </div>
+  </div>
+</div>

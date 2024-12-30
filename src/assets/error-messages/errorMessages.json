@@ -1,0 +1,55 @@
+{
+  "kwaUam": {
+    "kwa-loginForm": {
+      "kwa-userName-required": "Please enter Username",
+      "kwa-userName-minlength": "Minlength should be 1",
+      "kwa-userName-maxlength": "Username should not be greater than 50 characters",
+      "kwa-userName-pattern": "Please enter a valid User Name",
+      "kwa-password-required": "Please enter Password",
+      "kwa-password-valid": "Password must contain at least 10 characters including uppercase, lowercase, number and special characters",
+      "kwa-password-maxlength": "Password should not be greater than 20 characters",
+      "kwa-password-minlength": "Password must contain at least 10 characters including uppercase, lowercase, number and special characters",
+      "kwa-forgotpassword-pattern" : "Please enter valid email"
+    },
+    "kwa-usersForm": {
+      "kwa-password-required": "Please enter Password",
+      "kwa-password-valid": "Password must contain at least 10 characters including uppercase, lowercase, number and special characters",
+      "kwa-password-maxlength": "Password should not be greater than 20 characters",
+      "kwa-password-minlength": "Password must contain at least 10 characters including uppercase, lowercase, number and special characters",
+      "kwa-confirmPassword-required": "Please enter Confirm Password",
+      "kwa-confirmPassword-valid": "Password does not match"
+    },
+    "kwa-registerForm": {
+      "kwa-firstName-required": "Please enter First Name",
+      "kwa-middleName-required": "Please enter Middle Name",
+      "kwa-lastName-required": "Please enter Last Name",
+      "kwa-userName-required": "Please enter Username",
+      "kwa-password-required": "Please enter Password",
+      "kwa-mobileNumber-required": "Please enter Mobile Number",
+      "kwa-email-required": "Please enter Email",
+      "kwa-email-valid": "Please enter a valid email address.",
+      "kwa-userType-required": "Please enter User Type",
+      "kwa-firstName-minlength": "Minlength should be 1",
+      "kwa-firstName-maxlength": "First Name should not be greater than 50 characters",
+      "kwa-firstName-valid": "Please enter a valid First Name",
+      "kwa-middleName-minlength": "Minlength should be 1",
+      "kwa-middleName-maxlength": "Middle Name should not be greater than 50 characters",
+      "kwa-middleName-valid": "Please enter a valid Middle Name",
+      "kwa-lastName-minlength": "Minlength should be 1",
+      "kwa-lastName-maxlength": "Last Name should not be greater than 50 characters",
+      "kwa-lastName-valid": "Please enter a valid Last Name",
+      "kwa-mobileNumber-minlength": "Minlength should be 10",
+      "kwa-mobileNumber-maxlength": "Length is exceeds not more than 15 numbers",
+      "kwa-mobileNumber-valid": "Please enter a valid Mobile Number",
+      "kwa-userName-minlength": "Minlength should be 1",
+      "kwa-userName-maxlength": "Username should not be greater than 50 characters",
+      "kwa-userName-pattern": "Please enter a valid User Name",
+      "kwa-password-valid": "Password must contain at least 10 characters including uppercase, lowercase, number and special characters",
+      "kwa-password-maxlength": "Password should not be greater than 20 characters",
+      "kwa-password-minlength": "Password must contain at least 10 characters including uppercase, lowercase, number and special characters",
+      "kwa-confirmPassword-required": "Please enter Confirm Password",
+      "kwa-confirmPassword-valid": "Password does not match",
+      "kwa-forgot-required": "Please enter email"
+    }
+  }
+}

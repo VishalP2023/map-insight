@@ -1,0 +1,17 @@
+.main-content {
+  display: flex;
+  flex: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.content {
+  margin-left: 200px; /* Matches the sidebar width */
+  padding: 20px;
+  width: 100%;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed + .content {
+  margin-left: 60px; /* Matches the collapsed sidebar width */
+}
+

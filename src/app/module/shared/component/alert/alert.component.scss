@@ -1,0 +1,31 @@
+.alert-position {
+  position: fixed;
+  top: 1%;
+  right: 32%;
+  z-index: 9999;
+  width: 547px;
+}
+
+.z-index {
+  z-index: 99999;
+}
+
+.text {
+  font-size: 15px;
+}
+
+.alert-bg-success{
+  background-color: #28a745;
+}
+
+.alert-bg-danger{
+  background-color: #dc3545;
+}
+
+.alert-bg-primary{
+  background-color: #007bff;
+}
+
+.alert-bg-warning{
+  background-color: #ffc107;
+}

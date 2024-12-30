@@ -1,0 +1,38 @@
+<p>multiselect-drop-down works!</p>
+<div class="multiselect-drop" #toggleButton  (click)="openMultiselectDropDown($event)">
+  <div  *ngIf="selectedScope?.length==0" style="font-weight: 300;"> Please select {{name}}</div>
+  <ng-container *ngIf="selectedScope.length > 0">
+      <ul class="list-group list-group-horizontal position-relative overflow-auto w-80">
+          <div *ngFor="let select of selectedScope" class="data">{{select.name}}  <span (click)="removeAt(select.name,$event)" class="item-close" style="float: right;"> <i class="fa fa-times"></i></span></div>          
+      </ul>
+      <span class="dot1"> {{selectedScope.length}}</span>
+      <div (click)="closeAll($event)" class="close dot"><i class="fa fa-times"></i></div>
+  </ng-container>
+</div>
+<div *ngIf="isOpen" class="card level1 row p-0 dropdown-upward" #menu id="dropdown-data" (clickOutside)="close1()">
+  <div class="card-header pb-0">
+      <div (click)="selectAll($event)" class="form-check">
+          <input [checked]="displayList.length==selectedScope.length" class="form-check-input mr-3" type="checkbox">
+          &#160;&#160;
+          <label class="form-check-label" for="">
+              Select All
+          </label>
+      </div>
+  </div>
+<div class="card-body cursor-pointer">
+  <div class="input-group mb-1">
+      <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+      <input (click)="$event.stopPropagation()"  #data (keyup)="changeData(data.value,$event)" type="text" class="form-control" placeholder="Keywords" aria-label="Keywords" aria-describedby="basic-addon1">
+    </div>
+<hr>
+<div class="row mb-2" *ngFor="let data of displayList;index as i">
+  <div class="col-md-1">
+      <input type="checkbox" class="form-check-input" [checked]="getChecked(data)"
+          (click)="selectDataAllCard(data,$event)" [id]="idRadio">
+  </div>
+  <div class="col-md-11"  (click)="selectDataAllCard(data,$event)">
+      {{data.name}}
+  </div>
+</div>
+</div>
+</div>

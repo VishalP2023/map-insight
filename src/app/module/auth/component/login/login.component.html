@@ -1,0 +1,32 @@
+<section class="page-section login-page">
+  <div class="full-width-screen">
+    <div class="container-fluid">
+      <div class="content-detail">
+        <form class="login-form" [formGroup]="loginForm">
+          <div class="imgcontainer">
+            <a href="index.html"> <img height="100" width="100" src="assets/images/avisys-blue-logo.png" alt="Avatar" class="avatar"> </a>
+          </div>
+          <div class="input-control">
+            <input type="text" placeholder="User name" formControlName="username">
+            <div class="">
+              <span class="password-field-show">
+                <input type="password" placeholder="Password" formControlName="password" class="password-field"
+                  [type]="showPassword ? 'text':'password'">
+                <div *ngIf="showPassword" (click)="changePassword(false)">
+                  <i class="fa fa-eye showHidePasss position-absolute" aria-hidden="true"></i>
+                </div>
+                <div *ngIf="!showPassword" (click)="changePassword(true)">
+                  <i class="fa fa-eye-slash showHidePasss position-absolute" aria-hidden="true"></i>
+                </div>
+                
+              </span>
+            </div>
+            <div class="login-btns">
+              <button type="submit" (click)="login()">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

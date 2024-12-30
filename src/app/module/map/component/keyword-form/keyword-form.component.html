@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <h6 class="card-title">Keywords Details</h6>
+  <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" [style.--cardHeight]="cardDivHeight">
+  <form class="w-100 p-2" [formGroup]="keywordForm">
+      <!-- <div class="row col-lg-12 mb-2">
+          <div class="col-lg-4">
+            <div class="labels">Keyword Id
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <input type="text" class="form-control" id="keywordId"
+              formControlName="keywordId">
+        </div>
+      </div> -->
+      <div class="row col-lg-12 mb-2">
+        <div class="col-lg-4">
+          <div class="labels">Keyword Name
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" id="name"
+            formControlName="name">
+      </div>
+    </div>
+    <div class="row col-lg-12 mb-2">
+      <div class="col-lg-4">
+        <div class="labels">Keyword Code
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" id="code"
+          formControlName="code">
+    </div>
+  </div>
+    <div class="row col-lg-12 mb-2">
+      <div class="col-lg-4">
+        <div class="labels">Created By
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" id="createdBy"
+          formControlName="createdBy">
+    </div>
+  </div>
+<div class="row col-lg-12 mb-2">
+  <div class="col-lg-4">
+    <div class="labels">Updated By
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <input type="text" class="form-control" id="updatedBy"
+      formControlName="updatedBy">
+</div>
+</div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" id="keyword-submit" [disabled]="keywordForm.invalid"
+      (click)="saveData()">{{label}}</button>
+    <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+  </div>
+
