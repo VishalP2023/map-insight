@@ -12,9 +12,9 @@ export class SidebarComponent implements OnInit {
   // Define links for admin and user roles
   adminLinks = [
     { label: 'Key Word', route: '/map/map/keyword-datatable', icon: 'fa fa-line-chart' },  // fa-chart-line -> fa-line-chart
-    { label: 'Sector', route: '/', icon: 'fa fa-users' },  // fa-users remains the same
-    { label: 'Search Location', route: '/map/map/search-location', icon: 'fa fa-cogs' }, 
-    { label: 'Geo Code', route: '/', icon: 'fa fa-cogs' },  
+    { label: 'Search Location', route: '/map/map/search-location', icon: 'fa fa-cogs' },  
+    { label: 'Sector', route: '/map/map/sector', icon: 'fa fa-users' },  // fa-users remains the same 
+    { label: 'Geo Code', route: '/settings', icon: 'fa fa-cogs' },  
   ];
   
   userLinks = [
