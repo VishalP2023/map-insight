@@ -399,13 +399,12 @@ export class DataTableComponent {
   }
 
   changeOwner() {
-    debugger
     let data = {
       event: "changeOwner",
       data: this.multiselect ? this.selectedDataArray : this.selectedDataArray
     }
     if (this.multiselect) {
-      debugger
+      
       if (this.selectedDataArray.length > 0) {
         // if(this.selectedDataArray.length > 1){
         //     this.alertServices.error("Please select single record to proceed",this.alertOptions);
@@ -432,7 +431,7 @@ export class DataTableComponent {
   selectAll(event: any) {
     event.stopPropagation();
     let data = [...this.content];
-    debugger
+    
     if (event.target.checked) {
       this.selectedDataArray = data;
     } else {

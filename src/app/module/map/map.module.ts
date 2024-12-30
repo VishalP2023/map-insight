@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MapRoutingModule } from './map-routing.module';
@@ -10,12 +10,15 @@ import { SharedModule } from '../shared/shared.module';
 import { KeywordDatatableComponentComponent } from './component/keyword-datatable.component/keyword-datatable.component.component';
 import { KeywordFormComponent } from './component/keyword-form/keyword-form.component';
 import { KeywordService } from './service/keyword.service';
+import { SearchLocationComponent } from './component/search-location/search-location.component';
+import { SearchLocationService } from './service/search-location.service';
 
 
 @NgModule({
   declarations: [
     KeywordDatatableComponentComponent,
-    KeywordFormComponent
+    KeywordFormComponent,
+    SearchLocationComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,8 @@ import { KeywordService } from './service/keyword.service';
   ],
   exports:[ KeywordDatatableComponentComponent,
     KeywordFormComponent],
-  providers:[BsModalService,KeywordService]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers:[BsModalService, KeywordService, SearchLocationService ]
 
 })
 export class MapModule { }

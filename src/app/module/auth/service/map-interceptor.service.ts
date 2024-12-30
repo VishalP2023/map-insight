@@ -9,10 +9,8 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger;
     let authReq = req;
-    const token = JSON.parse(sessionStorage.getItem('access_token')!)?.accessToken;
-
+    const token = sessionStorage.getItem('access_token');
     // Add token to headers if available and not accessing the authentication endpoint
     if (token != null && !authReq.url.includes('/auth/accessToken')) {
       authReq = this.addTokenHeader(req, token);
