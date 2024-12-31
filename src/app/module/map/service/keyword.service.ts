@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
+import { KeywordDetails } from '../models/Keyword.model';
 
 
 @Injectable()
@@ -10,8 +11,8 @@ export class KeywordService {
   constructor(private httpClient: HttpClient) { }
 
 
-  create(keywordDetails: any): Observable<any> {
-    return this.httpClient.post<any>(`${environment.baseUrl}/keyword/save`, keywordDetails);
+  create(keywordDetails: FormData): Observable<KeywordDetails> {
+    return this.httpClient.post<KeywordDetails>(`${environment.baseUrl}/keyword/save`, keywordDetails);
   }
 
   getMetadata(): Observable<TableHeaderMetaData> {
@@ -37,22 +38,19 @@ export class KeywordService {
     return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/keyword/search?`, options);
   }
 
-  getById(param: HttpParams): Observable<any> {
-    const options = {
-      params: param
-    };
-    return this.httpClient.get<any>(`${environment.baseUrl}/keyword/get-by-id?`, options);
+  getById(id: number): Observable<KeywordDetails> {
+    return this.httpClient.get<KeywordDetails>(`${environment.baseUrl}/keyword/get-by-id/${id}`);
   }
 
-  update(keywordDetails: any): Observable<any> {
-    return this.httpClient.put<any>(`${environment.baseUrl}/keyword/save`, keywordDetails);
+  update(keywordDetails: any): Observable<KeywordDetails> {
+    return this.httpClient.put<KeywordDetails>(`${environment.baseUrl}/keyword/save`, keywordDetails);
   }
 
-  delete(keywordId: number): Observable<any> {
-    return this.httpClient.delete(`${environment.baseUrl}/keyword/remove/${keywordId}`);
+  delete(keywordId: number): Observable<KeywordDetails> {
+    return this.httpClient.delete<KeywordDetails>(`${environment.baseUrl}/keyword/${keywordId}`);
   }
 
   getList(){
-    return this.httpClient.get<any>(`${environment.baseUrl}/keyword/get-list`);
+    return this.httpClient.get<KeywordDetails>(`${environment.baseUrl}/keyword/get-list`);
   }
 }

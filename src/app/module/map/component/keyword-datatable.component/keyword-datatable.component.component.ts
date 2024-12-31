@@ -27,7 +27,6 @@ export class KeywordDatatableComponentComponent {
   params: HttpParams = new HttpParams();
   title:string = "Keyword";
 
-
   constructor(private alertServices: AlertService,
     private modalService: BsModalService,
     private router: Router,
@@ -45,10 +44,7 @@ export class KeywordDatatableComponentComponent {
     }).subscribe((response) => {
       this.columnsMetadata = response.tableHeader,
         this.dataDataTable = response.tableData
-    },
-      (error) => {
-
-      })
+    })
   }
 
   buttonEvent1(data: any) {
@@ -63,11 +59,11 @@ export class KeywordDatatableComponentComponent {
       modalRef = this.modalService.show(KeywordFormComponent, {
         ...modalOptionsDialogRighted,
         initialState: {
-          keywordId: data.data.keywordId
+          keywordId: data.data.id
         }
       });
     } else if (data.event == "delete") {
-      this.keywordService.delete(data.data.keywordId).subscribe((response) => {
+      this.keywordService.delete(data.data.id).subscribe((response) => {
         this.params = this.params.set("page", data.pageNumber);
           this.dataTable.pagination.serchingParmeter = "";
           this.changePageSortSearch(this.params);
@@ -99,7 +95,7 @@ export class KeywordDatatableComponentComponent {
     }
 
     if (!params.get("sort")) {
-      params = params.set("sort", "keywordId,DESC");
+      params = params.set("sort", "id,DESC");
     }
 
     this.params = params;
