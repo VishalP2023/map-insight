@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './module/auth/service/map-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MapModule } from './module/map/map.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MapModule
   ],
   providers: [
     {

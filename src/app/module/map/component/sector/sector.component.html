@@ -1,0 +1,11 @@
+<div class="">
+    <div class="d-flex justify-content-between mb-2">
+      <h4>Sectors</h4>
+      <button class="btn btn-color" routerLink="">Back</button>
+    </div>
+      <app-data-table [title]= "title" [cardH]="true" [columns]="columnsMetadata" [permission]="permission"
+        [totalPages]="dataDataTable.totalPages" (buttonEvent1)="buttonEvent1($event)"
+        (changePageSortSearch)="changePageSortSearch($event)" [content]="dataDataTable.content" [hasOwner]=true>
+      </app-data-table>
+    </div>
+    

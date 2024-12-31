@@ -1,4 +1,4 @@
-<p>multiselect-drop-down works!</p>
+
 <div class="multiselect-drop" #toggleButton  (click)="openMultiselectDropDown($event)">
   <div  *ngIf="selectedScope?.length==0" style="font-weight: 300;"> Please select {{name}}</div>
   <ng-container *ngIf="selectedScope.length > 0">

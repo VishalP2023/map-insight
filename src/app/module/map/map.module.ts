@@ -12,13 +12,18 @@ import { KeywordFormComponent } from './component/keyword-form/keyword-form.comp
 import { KeywordService } from './service/keyword.service';
 import { SearchLocationComponent } from './component/search-location/search-location.component';
 import { SearchLocationService } from './service/search-location.service';
+import { SectorComponent } from './component/sector/sector.component';
+import { SectorFormComponent } from './component/sector-form/sector-form.component';
+import { SectorService } from './service/sector.service';
 
 
 @NgModule({
   declarations: [
     KeywordDatatableComponentComponent,
     KeywordFormComponent,
-    SearchLocationComponent
+    SearchLocationComponent,
+    SectorComponent,
+    SectorFormComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +38,7 @@ import { SearchLocationService } from './service/search-location.service';
   exports:[ KeywordDatatableComponentComponent,
     KeywordFormComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers:[BsModalService, KeywordService, SearchLocationService ]
+  providers:[BsModalService, KeywordService, SearchLocationService,SectorService ]
 
 })
 export class MapModule { }
