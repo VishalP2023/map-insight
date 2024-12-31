@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
     { label: 'Key Word', route: '/map/map/keyword-datatable', icon: 'fa fa-line-chart' },  // fa-chart-line -> fa-line-chart
     { label: 'Search Location', route: '/map/map/search-location', icon: 'fa fa-cogs' },  
     { label: 'Sector', route: '/map/map/sector', icon: 'fa fa-users' },  // fa-users remains the same 
-    { label: 'Geo Code', route: '/settings', icon: 'fa fa-cogs' },  
+    { label: 'Geo Code', route: '/map/map/geo-code', icon: 'fa fa-cogs' },  
   ];
   
   userLinks = [

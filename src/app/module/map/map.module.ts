@@ -15,7 +15,9 @@ import { SearchLocationService } from './service/search-location.service';
 import { SectorComponent } from './component/sector/sector.component';
 import { SectorFormComponent } from './component/sector-form/sector-form.component';
 import { SectorService } from './service/sector.service';
-
+import { GeocodeComponent } from './component/geocode/geocode.component';
+import { GeocodeDatatableComponent } from './component/geocode-datatable/geocode-datatable.component';
+import { GeocodeService } from './service/geocode.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SectorService } from './service/sector.service';
     KeywordFormComponent,
     SearchLocationComponent,
     SectorComponent,
-    SectorFormComponent
+    SectorFormComponent,
+    GeocodeComponent,
+    GeocodeDatatableComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,7 @@ import { SectorService } from './service/sector.service';
   exports:[ KeywordDatatableComponentComponent,
     KeywordFormComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers:[BsModalService, KeywordService, SearchLocationService,SectorService ]
+  providers:[BsModalService, KeywordService, SearchLocationService,SectorService, GeocodeService]
 
 })
 export class MapModule { }
