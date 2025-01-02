@@ -18,9 +18,8 @@ export class SidebarComponent implements OnInit {
   ];
   
   userLinks = [
-    { label: 'Profile', route: '/profile', icon: 'fa fa-user' },  // fa-user remains the same
-    { label: 'Tasks', route: '/tasks', icon: 'fa fa-tasks' },  // fa-tasks remains the same
-    { label: 'Help', route: '/help', icon: 'fa fa-question-circle' },  // fa-circle-question -> fa-question-circle
+    { label: 'Search Location', route: '/map/map/search-location', icon: 'fa fa-cogs' },  
+    { label: 'Geo Code', route: '/map/map/geo-code', icon: 'fa fa-cogs' },  
   ];
 
   ngOnInit(): void {

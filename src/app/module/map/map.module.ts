@@ -18,6 +18,7 @@ import { SectorService } from './service/sector.service';
 import { GeocodeComponent } from './component/geocode/geocode.component';
 import { GeocodeDatatableComponent } from './component/geocode-datatable/geocode-datatable.component';
 import { GeocodeService } from './service/geocode.service';
+import { ContactDetailsComponent } from './component/contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GeocodeService } from './service/geocode.service';
     SectorComponent,
     SectorFormComponent,
     GeocodeComponent,
-    GeocodeDatatableComponent
+    GeocodeDatatableComponent,
+    ContactDetailsComponent
   ],
   imports: [
     CommonModule,

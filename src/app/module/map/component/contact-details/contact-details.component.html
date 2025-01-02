@@ -1,0 +1,16 @@
+<!-- contact-modal.component.html -->
+<div class="modal-header">
+    <h6 class="card-title">Contact Details</h6>
+    <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body" [style.--cardHeight]="cardDivHeight">
+        <div class="contact-details">
+            <p><strong>Name:</strong> {{contactDetails.name}}</p>
+            <p><strong>Phone:</strong> {{contactDetails.formatted_phone_number}}</p>
+            <p><strong>Address:</strong> {{contactDetails.formatted_address}}</p>
+            <p><strong>Website:</strong> {{contactDetails.website}}</p>
+        </div>
+   </div>
+<div class="modal-footer">
+  <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+</div>

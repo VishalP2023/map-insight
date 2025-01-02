@@ -1,1 +1,31 @@
-<p>geocode works!</p>
+<div class="modal-header">
+    <h6 class="card-title">GeoCode Details</h6>
+    <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body" [style.--cardHeight]="cardDivHeight">
+    <form class="w-100 p-2" [formGroup]="GeoCodeForm">
+        <div class="row col-lg-12 mb-2">
+          <div class="col-lg-4">
+            <div class="labels">Address
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <input type="text" class="form-control" id="address"
+              formControlName="address">
+              <div *ngIf="GeoCodeForm.get('address')?.touched && GeoCodeForm.get('address')?.invalid">
+                <small class="text-danger" *ngIf="GeoCodeForm.get('address')?.hasError('required')">Address is required.</small>
+                <small class="text-danger" *ngIf="GeoCodeForm.get('address')?.hasError('minlength')">Address must be at least 3 characters long.</small>
+                <small class="text-danger" *ngIf="GeoCodeForm.get('address')?.hasError('maxlength')">Address cannot exceed 100 characters.</small>
+                <small class="text-danger" *ngIf="GeoCodeForm.get('address')?.hasError('pattern')">Address can only contain letters, numbers, spaces, and commas.</small>
+              </div>  
+        </div>
+      </div>      
+    </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" id="keyword-submit" [disabled]="GeoCodeForm.invalid"
+        (click)="saveData()">{{label}}</button>
+      <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+    </div>
+  
+  

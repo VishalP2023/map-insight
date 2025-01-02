@@ -1,7 +1,44 @@
-<header class="header">
-  <div class="logo">MAP INSIGHT</div>
-  <nav class="nav">
-    <a routerLink="/map" routerLinkActive="active">Map</a>
-    <button (click)="logout()">Logout</button>
-  </nav>
+<header class="header navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <!-- Logo Section -->
+    <a class="navbar-brand" href="#">MAP INSIGHT</a>
+    
+    <!-- Navbar Toggle Button for Mobile View -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Navbar Links Section -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">       
+
+        <!-- Conditionally Render Admin or User Links -->
+        <ng-container>
+          <ng-container *ngIf="userRole === 'ADMIN'">
+            <li *ngFor="let link of adminLinks" class="nav-item">
+              <a class="nav-link" [routerLink]="link.route" routerLinkActive="active">
+                <!-- <i [class]="link.icon"></i> -->
+                 <span>{{ link.label }}</span>
+              </a>
+            </li>
+          </ng-container>
+
+          <ng-container *ngIf="userRole !== 'ADMIN'">
+            <li *ngFor="let link of userLinks" class="nav-item">
+              <a class="nav-link" [routerLink]="link.route" routerLinkActive="active">
+                <!-- <i [class]="link.icon"></i>  -->
+                <span>{{ link.label }}</span>
+              </a>
+            </li>
+          </ng-container>
+        </ng-container>
+
+        <!-- Logout Button -->
+        <!-- <div class="uam-header-title me-3 text-white">Welcome</div> -->
+        <li class="nav-item">
+          <button class="btn btn-outline-light" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </header>
