@@ -26,6 +26,7 @@ export class KeywordDatatableComponentComponent {
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
   params: HttpParams = new HttpParams();
   title:string = "Keyword";
+  placeId: string='';
 
   constructor(private alertServices: AlertService,
     private modalService: BsModalService,

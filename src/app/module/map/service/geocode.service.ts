@@ -22,5 +22,14 @@ export class GeocodeService {
           };
           return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/geocode/get-all?`, options);
         }
+
+          create(geoCodeAddress: FormData): Observable<any> {
+            const body = {
+              address: geoCodeAddress
+            };
+            return this.httpClient.post<any>(`${environment.baseUrl}/geocode/generate?address=${geoCodeAddress}`, {});
+
+            //return this.httpClient.post<any>(`${environment.baseUrl}/geocode/generate`, body);
+          }
   }
   

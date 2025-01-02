@@ -12,6 +12,8 @@ import { AlertService } from 'src/app/module/shared/service/alert.service';
 import { KeywordService } from '../../service/keyword.service';
 import { KeywordFormComponent } from '../keyword-form/keyword-form.component';
 import { SearchLocationService } from '../../service/search-location.service';
+import { ContactDetailsComponent } from '../contact-details/contact-details.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-location',
@@ -21,25 +23,35 @@ import { SearchLocationService } from '../../service/search-location.service';
 export class SearchLocationComponent {
 keywordId!: number;
   columnsMetadata!: TableHeaderMetaData;
-  permission: Array<boolean> = [true, true, true];
+  permission: Array<boolean> = [false, false, false];
   @ViewChild(DataTableComponent) dataTable!: DataTableComponent;
   dataDataTable: DataDataTable = { content: [], totalPages: 0 };
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
   params: HttpParams = new HttpParams();
   title:string = "Keyword";
-
+  sectors: any;
+  locationForm!: FormGroup; // Define the FormGroup
 
   constructor(private alertServices: AlertService,
     private modalService: BsModalService,
     private router: Router,
     private searchLocationService: SearchLocationService,
-    private modalRef: BsModalRef) {
+    private modalRef: BsModalRef,
+    private fb: FormBuilder) {
 
   }
 
-  ngOnInit(): void {console.log("here")
+  ngOnInit(): void {
+
+    this.locationForm = this.fb.group({
+      sector: ['1', Validators.required], // 'sector' dropdown with required validation
+      location: ['thane', Validators.required] // 'location' textbox with required validation
+    });
+
     this.params = this.params.append("page", 0);
     this.params = this.params.append("size", 15);
+    this.params = this.params.append("location", this.locationForm.value.location);
+    this.params = this.params.append("sector", this.locationForm.value.sector);
     forkJoin({
       tableHeader: this.searchLocationService.getMetadata(),
       tableData: this.searchLocationService.getAll(this.params),
@@ -50,40 +62,26 @@ keywordId!: number;
       (error) => {
 
       })
+
+      this.getSectorData()
+  }
+
+  getSectorData() {
+    this.searchLocationService.getSectorData().subscribe((response: any) => {
+      this.sectors = response
+    })
   }
 
   buttonEvent1(data: any) {
     let modalRef: BsModalRef | any = null;
-    if (data.event == 'add') {
-      modalRef = this.modalService.show(KeywordFormComponent, {
-        ...modalOptionsDialogRighted
-
-      });
-    }
-    else if (data.event == 'edit') {
-      modalRef = this.modalService.show(KeywordFormComponent, {
+    
+    if (data.event == 'inSidebtn') {
+      modalRef = this.modalService.show(ContactDetailsComponent, {
         ...modalOptionsDialogRighted,
         initialState: {
-          keywordId: data.data.keywordId
+          placeId: data.data.placeId
         }
       });
-    } else if (data.event == "delete") {
-      // this.searchLocationService.delete(data.data.keywordId).subscribe((response) => {
-      //   this.params = this.params.set("page", data.pageNumber);
-      //     this.dataTable.pagination.serchingParmeter = "";
-      //     this.changePageSortSearch(this.params);
-      //     this.alertServices.success(
-      //       "Record deleted successfully",
-      //       this.alertOptions
-      //     );
-      // })
-    }
-    else if (data.event == 'inSidebtn') {
-      if (data.event == 'PlaceId') {
-       // this.templateService.setPersonId(event.data.personId);
-       // this.templateService.setPreview(true);
-     //   this.router.navigate(['/resume/stepper-dashboard']);
-      }
     }
     if (modalRef) {
       modalRef.onHidden.subscribe(
@@ -100,6 +98,21 @@ keywordId!: number;
     }
   }
 
+  onSubmit(): void {
+    if (this.locationForm.valid) {
+      console.log('Form Submitted', this.locationForm.value);
+       // Remove existing location and sector from params
+       this.params = this.params.delete('location');
+       this.params = this.params.delete('sector');
+      this.params = this.params.append("location", this.locationForm.value.location);
+      this.params = this.params.append("sector", this.locationForm.value.sector);
+      
+      this.changePageSortSearch(this.params)
+    } else {
+      console.log('Form is not valid');
+    }
+  }
+
   changePageSortSearch(params: HttpParams) {
 
     if (params.get("sort")) {
@@ -107,10 +120,18 @@ keywordId!: number;
     }
 
     if (!params.get("sort")) {
-      params = params.set("sort", "keywordId,DESC");
+      params = params.set("sort", "id,DESC");
     }
 
     this.params = params;
+    this.params = this.params.delete('location');
+    this.params = this.params.delete('sector');
+    this.params = this.params.append("page", 0);
+    this.params = this.params.append("size", 15);
+    this.params = this.params.append("location", this.locationForm.value.location);
+    this.params = this.params.append("sector", this.locationForm.value.sector);
+    console.log("sfsd", this.params)
+
     this.searchLocationService
       .getAll(params)
       .subscribe((sucess: any) => {

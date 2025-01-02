@@ -3,8 +3,48 @@
         <h4>Search Location</h4>
         <button class="btn btn-color" routerLink="/geo-location/dashboard">Back</button>
     </div>
-    <app-data-table [title]="title" [cardH]="true" [columns]="columnsMetadata" [permission]="permission"
-        [totalPages]="dataDataTable.totalPages" (buttonEvent1)="buttonEvent1($event)"
-        (changePageSortSearch)="changePageSortSearch($event)" [content]="dataDataTable.content" [hasOwner]=true>
+
+      <!-- Add dropdown for Sector and textbox for Location -->
+      <form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+            <div class="col-lg-4">
+                <label for="sector" class="form-label">Sector</label>
+                <select class="form-select" id="sector" formControlName="sector">
+                    <option value="">Select Sector</option>
+                    <option *ngFor="let sector of sectors" [value]="sector.id">{{ sector.name }}</option>
+                </select>
+                <!-- Validation Message for Sector -->
+                <div *ngIf="locationForm.get('sector')?.invalid && locationForm.get('sector')?.touched" class="text-danger">
+                    Sector is required.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" formControlName="location">
+                <!-- Validation Message for Location -->
+                <div *ngIf="locationForm.get('location')?.invalid && locationForm.get('location')?.touched" class="text-danger">
+                    Location is required.
+                </div>
+            </div>
+                  <!-- Submit Button -->
+        <div class="col-lg-4 d-flex align-items-end">
+            <label for=""></label>
+            <button type="submit" class="btn btn-primary" [disabled]="locationForm.invalid">Search</button>
+        </div>
+        </div>
+
+    </form>
+
+    <!-- Data Table Component -->
+    <app-data-table 
+        [title]="title" 
+        [cardH]="true" 
+        [columns]="columnsMetadata" 
+        [permission]="permission"
+        [totalPages]="dataDataTable.totalPages" 
+        (buttonEvent1)="buttonEvent1($event)"
+        (changePageSortSearch)="changePageSortSearch($event)" 
+        [content]="dataDataTable.content" 
+        [hasOwner]="true">
     </app-data-table>
 </div>

@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path:'geo-code',
         component:GeocodeDatatableComponent
-      }      
+      },      
     ]
   },
   {path: "",redirectTo: "map", pathMatch: "full"},
