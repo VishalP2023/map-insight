@@ -8,9 +8,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    <!-- Navbar Links Section -->
+    <!-- Navbar Links Section - Shifted to the left -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">       
+      <ul class="navbar-nav">       
 
         <!-- Conditionally Render Admin or User Links -->
         <ng-container>
@@ -33,12 +33,15 @@
           </ng-container>
         </ng-container>
 
-        <!-- Logout Button -->
-        <!-- <div class="uam-header-title me-3 text-white">Welcome</div> -->
-        <li class="nav-item">
-          <button class="btn btn-outline-light" (click)="logout()">Logout</button>
-        </li>
       </ul>
+    </div>
+
+    <!-- User Name and Logout Button Section - Aligned to the right -->
+    <div class="d-flex align-items-center ms-3">
+      <span class="navbar-text text-white me-3">
+        Welcome,  {{ username }}
+      </span>
+      <button class="btn btn-outline-light" (click)="logout()">Logout</button>
     </div>
   </div>
 </header>

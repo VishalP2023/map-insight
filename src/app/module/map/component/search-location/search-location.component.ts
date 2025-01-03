@@ -14,6 +14,7 @@ import { KeywordFormComponent } from '../keyword-form/keyword-form.component';
 import { SearchLocationService } from '../../service/search-location.service';
 import { ContactDetailsComponent } from '../contact-details/contact-details.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MultiSelectData } from 'src/app/module/shared/model/multi-selelect-dropdown.model';
 
 @Component({
   selector: 'app-search-location',
@@ -28,9 +29,13 @@ keywordId!: number;
   dataDataTable: DataDataTable = { content: [], totalPages: 0 };
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
   params: HttpParams = new HttpParams();
+  params_for_map: HttpParams = new HttpParams();
   title:string = "Keyword";
   sectors: any;
   locationForm!: FormGroup; // Define the FormGroup
+  defaultValue: Array<MultiSelectData> = [];
+  dropdownList: any = [];
+  showError: boolean =false;
 
   constructor(private alertServices: AlertService,
     private modalService: BsModalService,
@@ -42,16 +47,16 @@ keywordId!: number;
   }
 
   ngOnInit(): void {
-
+    this.getKeywords();
     this.locationForm = this.fb.group({
-      sector: ['1', Validators.required], // 'sector' dropdown with required validation
-      location: ['thane', Validators.required] // 'location' textbox with required validation
+      sector: ['', Validators.required], // 'sector' dropdown with required validation
+      location: ['', Validators.required] // 'location' textbox with required validation
     });
 
     this.params = this.params.append("page", 0);
     this.params = this.params.append("size", 15);
-    this.params = this.params.append("location", this.locationForm.value.location);
-    this.params = this.params.append("sector", this.locationForm.value.sector);
+   // this.params = this.params.append("location", this.locationForm.value.location);
+   // this.params = this.params.append("sector", this.locationForm.value.sector);
     forkJoin({
       tableHeader: this.searchLocationService.getMetadata(),
       tableData: this.searchLocationService.getAll(this.params),
@@ -126,16 +131,56 @@ keywordId!: number;
     this.params = params;
     this.params = this.params.delete('location');
     this.params = this.params.delete('sector');
-    this.params = this.params.append("page", 0);
-    this.params = this.params.append("size", 15);
     this.params = this.params.append("location", this.locationForm.value.location);
     this.params = this.params.append("sector", this.locationForm.value.sector);
-    console.log("sfsd", this.params)
+    this.params_for_map=this.params_for_map.append("location", this.locationForm.value.location);
+    this.params_for_map=this.params_for_map.append("sector", this.locationForm.value.sector);
+
+    console.log("this.params", this.params)
+    this.searchLocationService
+    .genrateData(this.params_for_map)
+    .subscribe((sucess: any) => {
+      this.dataDataTable = sucess;
+    });
 
     this.searchLocationService
-      .getAll(params)
+      .getAll(this.params)
       .subscribe((sucess: any) => {
         this.dataDataTable = sucess;
       });
+  }
+
+  selectedDataKeywords(data: Array<MultiSelectData>) {
+    console.log(data)
+    if (data?.length > 0) {
+      let filterData = data.map((x: MultiSelectData) => x.id);
+       // Convert filterData array to a comma-separated string
+      let filterDataString = filterData.join(',');
+      console.log(filterDataString);  // Outputs: "1,2"
+
+      // Set the value in the form control
+      this.locationForm.controls['sector'].patchValue(filterDataString);
+    } else {
+      this.locationForm.controls['sector'].reset("")
+    }
+  }
+
+  getKeywords() {
+    this.searchLocationService.getSectorData().subscribe((success: any) => {
+      let a: any = []
+      let b: any = []
+      for (let [keywordId, name] of Object.entries(success)) {
+        console.log("keywordId", keywordId)
+        a.push(name);
+        b.push({ name: name, id: keywordId })
+      }
+
+      this.dropdownList = a;
+      this.locationForm.controls["sector"].patchValue(b);
+    })
+  }
+
+  onErrorScope(){
+    this.showError = true;
   }
 }
