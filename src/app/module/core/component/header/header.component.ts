@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   userRole: string | null = ''; // Role from sessionStorage
+  username!: string | null;
 
   // Define links for admin and user roles
   adminLinks = [
@@ -18,7 +19,6 @@ export class HeaderComponent {
   ];
   
   userLinks = [
-    { label: 'Geo Code', route: '/map/map/geo-code', icon: 'fa fa-cogs' },  
     { label: 'Search Location', route: '/map/map/search-location', icon: 'fa fa-map-marker' },  
   ];
   constructor(private router: Router) {}
@@ -26,6 +26,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     // Fetch the role from sessionStorage
     this.userRole = sessionStorage.getItem('userRoles');
+    this.username = sessionStorage.getItem('username');
   }
 
   logout() {

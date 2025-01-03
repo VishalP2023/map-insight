@@ -9,10 +9,12 @@
         <div class="row mb-3">
             <div class="col-lg-4">
                 <label for="sector" class="form-label">Sector</label>
-                <select class="form-select" id="sector" formControlName="sector">
+                <app-multiselect-drop-down [tabIndex]="0"  [name]="'sector'" [defaultValue]="defaultValue" (sleetedData)="selectedDataKeywords($event)" [dropdownList]="dropdownList" (focus)="onErrorScope()">
+                </app-multiselect-drop-down>
+                <!-- <select class="form-select" id="sector" formControlName="sector">
                     <option value="">Select Sector</option>
                     <option *ngFor="let sector of sectors" [value]="sector.id">{{ sector.name }}</option>
-                </select>
+                </select> -->
                 <!-- Validation Message for Sector -->
                 <div *ngIf="locationForm.get('sector')?.invalid && locationForm.get('sector')?.touched" class="text-danger">
                     Sector is required.
