@@ -7,19 +7,19 @@
     <div class="card-body">
       <h4>
         Search Contact Details Count: 
-        <span (click)="onSearchContactsCountClick()">
+        <span (click)="onSearchCountClick('contacts')">
           {{ dashboardCount?.searchContactsCount }}
         </span>
       </h4>
       <h4 *ngIf="userRole === 'ADMIN'">
         Search Geocodes Count: 
-        <span (click)="onSearchGeocodesCountClick()">
+        <span (click)="onSearchCountClick('geocodes')">
           {{ dashboardCount.searchGeocodesCount }}
         </span>
       </h4>
       <h4 *ngIf="userRole === 'ADMIN'">
         Search Places Count: 
-        <span (click)="onSearchPlacesCountClick()">
+        <span (click)="onSearchCountClick('places')">
           {{ dashboardCount.searchPlacesCount }}
         </span>
       </h4>
@@ -29,6 +29,6 @@
   <!-- Data Table (Full Width) -->
   <app-data-table [title]="title" [cardH]="true" [columns]="columnsMetadata" [permission]="permission"
       [totalPages]="dataDataTable.totalPages" (buttonEvent1)="buttonEvent1($event)"
-      (changePageSortSearch)="changePageSortSearch($event)" [content]="dataDataTable.content" [hasOwner]=true>
+      (changePageSortSearch)="changePageSortSearch($event, selectedApiType)" [content]="dataDataTable.content" [hasOwner]=true>
   </app-data-table>
 </div>

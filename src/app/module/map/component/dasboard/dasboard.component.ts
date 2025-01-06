@@ -31,6 +31,7 @@ export class DasboardComponent {
   dashboardCount: any;
   title:string = "Dashboard";
   userRole!: string | null;
+  selectedApiType: 'contacts' | 'geocodes' | 'places' = 'contacts';
 
   constructor(private alertServices: AlertService,
       private modalService: BsModalService,
@@ -65,49 +66,44 @@ export class DasboardComponent {
     }
 
     buttonEvent1(data: any) {
-      let modalRef: BsModalRef | any = null;
-      if (data.event == 'add') {
-        modalRef = this.modalService.show(GeocodeComponent, {
-          ...modalOptionsDialogRighted
-  
-        });
-      }    
-      if (modalRef) {
-        modalRef.onHidden.subscribe(
-          (refreshData: boolean) => {
-            if (refreshData === true) {
-              this.dataTable.pagination.serchingParmeter = "";
-              let params = new HttpParams()
-              params = params.append("page", 0);
-              params = params.append("size", 15);
-              this.changePageSortSearch(params);
-            }
-          }
-        );
-      }
+
     }
   
-    changePageSortSearch(params: HttpParams) {
-  
-      if (params.get("sort")) {
-        let sortKey = params.get("sort")!.split(",");
+    changePageSortSearch(params: HttpParams, apiType: 'contacts' | 'geocodes' | 'places') {
+      if (!params.get('sort')) {
+        params = params.set('sort', 'id,DESC');
+      }
+      
+      if (!params.get('name')) {
+        params = params.set('name', '');
       }
   
-      if (!params.get("sort")) {
-        params = params.set("sort", "id,DESC");
+      let metadataApi, dataApi;
+      switch (apiType) {
+        case 'contacts':
+          metadataApi = this.dashboardService.getContactMetadata();
+          dataApi = this.dashboardService.getAllContactData(params);
+          break;
+        case 'geocodes':
+          metadataApi = this.dashboardService.getGeoCodeMetadata();
+          dataApi = this.dashboardService.getAllGeoCodeData(params);
+          break;
+        case 'places':
+          metadataApi = this.dashboardService.getPlaceMetadata();
+          dataApi = this.dashboardService.getAllPlaceData(params);
+          break;
       }
   
-      if (!params.get("name")) {
-        params = params.set("name", "");
-      }
-  
-      this.params = params;
-      this.dashboardService
-        .getAllPlaceData(params)
-        .subscribe((sucess: any) => {
-          this.dataDataTable = sucess;
-        });
-    }
+      forkJoin({ tableHeader: metadataApi, tableData: dataApi }).subscribe(
+        (response) => {
+          this.columnsMetadata = response.tableHeader;
+          this.dataDataTable = response.tableData;
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+    }  
 
   // Fetch counts from the API
   fetchDataCounts() {
@@ -116,45 +112,12 @@ export class DasboardComponent {
     })
   }
 
-  onSearchContactsCountClick() {
-    // Handle the click event for Search Contacts Count
-    forkJoin({
-      tableHeader: this.dashboardService.getContactMetadata(),
-      tableData: this.dashboardService.getAllContactData(this.params),
-    }).subscribe((response) => {
-      this.columnsMetadata = response.tableHeader,
-        this.dataDataTable = response.tableData
-    },
-      (error) => {
+  onSearchCountClick(apiType: 'contacts' | 'geocodes' | 'places') {
+    // Set the selected API type
+    this.selectedApiType = apiType;
 
-      })
+    // Trigger the table update
+    this.changePageSortSearch(this.params, apiType);
   }
-  
-  onSearchGeocodesCountClick() {
-    // Handle the click event for Search Geocodes Count
-    forkJoin({
-      tableHeader: this.dashboardService.getGeoCodeMetadata(),
-      tableData: this.dashboardService.getAllGeoCodeData(this.params),
-    }).subscribe((response) => {
-      this.columnsMetadata = response.tableHeader,
-        this.dataDataTable = response.tableData
-    },
-      (error) => {
 
-      })
-  }
-  
-  onSearchPlacesCountClick() {
-    // Handle the click event for Search Places Count
-    forkJoin({
-      tableHeader: this.dashboardService.getPlaceMetadata(),
-      tableData: this.dashboardService.getAllPlaceData(this.params),
-    }).subscribe((response) => {
-      this.columnsMetadata = response.tableHeader,
-        this.dataDataTable = response.tableData
-    },
-      (error) => {
-
-      })
-  }
 }
