@@ -1,0 +1,76 @@
+.remove {
+  top: 12px;
+  margin-left: 92px;
+  display: none;
+}
+
+.remove i {
+  font-size: 20px;
+}
+
+.profile-titles {
+  margin-top: 17px;
+}
+
+.addimage {
+  top: 107px;
+  margin-left: 91px;
+  color: rgb(0, 0, 0);
+  display: none;
+}
+
+.addimage i {
+  font-size: 20px;
+}
+
+.person-img {
+  display: flex;
+  width: 102px;
+  height: 105px;
+  border: 1px solid black;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1), (min-resolution: 96dpi) {
+  .person-img {
+      margin-left: 152px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  .person-img {
+      margin-left: 100px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .person-img {
+      margin-left: 50px;
+  }
+}
+
+
+
+.person-img:hover .remove {
+  display: block;
+}
+
+.person-img:hover .addimage {
+  display: block;
+}
+
+.remove:hover {
+  color: #e74c3c
+}
+
+.custom-label {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: system-ui;
+}
+
+.modal-title {
+  font-weight: 500;
+  font-size: 16px;
+  color: #212529;
+  margin-left: 14px;
+}

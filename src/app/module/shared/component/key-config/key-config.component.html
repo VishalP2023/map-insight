@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h6 class="card-title">Key Details</h6>
+  <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" [style.--cardHeight]="cardDivHeight">
+  <form class="w-100 p-2" [formGroup]="keyconfigForm">
+      <div class="row col-lg-12 mb-2">
+        <div class="col-lg-4">
+          <div class="labels">Key
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" id="key"
+            formControlName="key">
+          <div *ngIf="keyconfigForm.get('key')?.invalid && keyconfigForm.get('key')?.touched" class="text-danger">
+              Key is required.
+          </div>
+      </div>
+    </div>
+    <div class="row col-lg-12 mb-2">
+      <div class="col-lg-4">
+        <div class="labels">Name
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" id="name"
+          formControlName="name">
+          <div *ngIf="keyconfigForm.get('name')?.invalid && keyconfigForm.get('name')?.touched" class="text-danger">
+            Name is required.
+        </div>
+    </div>
+
+  </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" id="keyword-submit" [disabled]="keyconfigForm.invalid"
+      (click)="saveData()">{{label}}</button>
+    <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+  </div>

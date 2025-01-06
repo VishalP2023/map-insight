@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h6 class="card-title">Key Details</h6>
+  <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" [style.--cardHeight]="cardDivHeight">
+  <form class="w-100 p-2" [formGroup]="keybindForm">
+    <div class="row col-lg-12 mb-2">
+      <div class="col-lg-4">
+        <div class="labels">key
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <select class="form-select" id="sector" formControlName="id">
+          <option value="">Select Sector</option>
+          <option *ngFor="let key of keys" [value]="key.id">{{ key.name }}</option>
+      </select>
+      <div *ngIf="keybindForm.get('id')?.invalid && keybindForm.get('id')?.touched" class="text-danger">
+        Please select key
+    </div>
+    </div>
+  </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" id="keyword-submit" [disabled]="keybindForm.invalid"
+      (click)="bindKey()">{{label}}</button>
+    <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+  </div>
