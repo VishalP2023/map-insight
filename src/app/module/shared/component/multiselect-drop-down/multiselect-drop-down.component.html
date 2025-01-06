@@ -6,7 +6,7 @@
           <div *ngFor="let select of selectedScope" class="data">{{select.name}}  <span (click)="removeAt(select.name,$event)" class="item-close" style="float: right;"> <i class="fa fa-times"></i></span></div>          
       </ul>
       <span class="dot1"> {{selectedScope.length}}</span>
-      <div (click)="closeAll($event)" class="close dot"><i class="fa fa-times"></i></div>
+      <div (click)="closeAll($event)" class="close"><i class="fa fa-times"></i></div>
   </ng-container>
 </div>
 <div *ngIf="isOpen" class="card level1 row p-0 dropdown-upward" #menu id="dropdown-data" (clickOutside)="close1()">

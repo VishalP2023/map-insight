@@ -30,6 +30,7 @@ export class DasboardComponent {
   params: HttpParams = new HttpParams();
   dashboardCount: any;
   title:string = "Dashboard";
+  userRole!: string | null;
 
   constructor(private alertServices: AlertService,
       private modalService: BsModalService,
@@ -43,12 +44,13 @@ export class DasboardComponent {
   ngOnInit(): void {
 
       this.fetchDataCounts();
+      this.getUserRole();
       this.params = this.params.append("page", 0);
       this.params = this.params.append("size", 15);
       this.params= this.params.append("name",'');
       forkJoin({
-        tableHeader: this.dashboardService.getPlaceMetadata(),
-        tableData: this.dashboardService.getAllPlaceData(this.params),
+        tableHeader: this.dashboardService.getContactMetadata(),
+        tableData: this.dashboardService.getAllContactData(this.params),
       }).subscribe((response) => {
         this.columnsMetadata = response.tableHeader,
           this.dataDataTable = response.tableData
@@ -58,6 +60,10 @@ export class DasboardComponent {
         })
     }
   
+    getUserRole(){
+      this.userRole = sessionStorage.getItem('userRoles');
+    }
+
     buttonEvent1(data: any) {
       let modalRef: BsModalRef | any = null;
       if (data.event == 'add') {
