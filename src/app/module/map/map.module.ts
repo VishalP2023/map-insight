@@ -19,6 +19,8 @@ import { GeocodeComponent } from './component/geocode/geocode.component';
 import { GeocodeDatatableComponent } from './component/geocode-datatable/geocode-datatable.component';
 import { GeocodeService } from './service/geocode.service';
 import { ContactDetailsComponent } from './component/contact-details/contact-details.component';
+import { DasboardComponent } from './component/dasboard/dasboard.component';
+import { DashboardService } from './service/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { ContactDetailsComponent } from './component/contact-details/contact-det
     SectorFormComponent,
     GeocodeComponent,
     GeocodeDatatableComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    DasboardComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,7 @@ import { ContactDetailsComponent } from './component/contact-details/contact-det
   exports:[ KeywordDatatableComponentComponent,
     KeywordFormComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers:[BsModalService, KeywordService, SearchLocationService,SectorService, GeocodeService]
+  providers:[BsModalService, KeywordService, SearchLocationService,SectorService, GeocodeService, DashboardService]
 
 })
 export class MapModule { }

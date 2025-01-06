@@ -22,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     HttpClientModule,
     RouterModule,
-  ],
+    SharedModule
+],
   exports:[
     HeaderComponent,
     FooterComponent,

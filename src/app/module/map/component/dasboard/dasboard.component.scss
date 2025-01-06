@@ -1,0 +1,32 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensures the dashboard takes full height */
+}
+
+.card.card-centered {
+  width: 400px; /* Adjust the width of the card as needed */
+  text-align: left;
+  margin-bottom: 20px; /* Adds space between the card and the table */
+}
+
+.card-body h4 {
+  margin: 10px 0;
+}
+
+.card-body span {
+  cursor: pointer; /* Makes the count clickable */
+  color: #007bff; /* Optionally style the count (e.g., blue color) */
+  transition: color 0.3s ease;
+}
+
+.card-body span:hover {
+  color: #0056b3; /* Hover effect for the count */
+}
+
+app-data-table {
+  width: 100%; /* Makes the data table take up the full width */
+  max-width: 100%; /* Prevents the table from overflowing */
+}

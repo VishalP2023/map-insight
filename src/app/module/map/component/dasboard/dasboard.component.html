@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between mb-2">
+  <h4>Dasboard</h4>
+</div>
+<div class="dashboard">
+  <!-- Card with Counts (Center the card) -->
+  <div class="card card-centered">
+    <div class="card-body">
+      <h4>
+        Search Contact Details Count: 
+        <span (click)="onSearchContactsCountClick()">
+          {{ dashboardCount?.searchContactsCount }}
+        </span>
+      </h4>
+      <h4>
+        Search Geocodes Count: 
+        <span (click)="onSearchGeocodesCountClick()">
+          {{ dashboardCount.searchGeocodesCount }}
+        </span>
+      </h4>
+      <h4>
+        Search Places Count: 
+        <span (click)="onSearchPlacesCountClick()">
+          {{ dashboardCount.searchPlacesCount }}
+        </span>
+      </h4>
+    </div>
+  </div>
+
+  <!-- Data Table (Full Width) -->
+  <app-data-table [title]="title" [cardH]="true" [columns]="columnsMetadata" [permission]="permission"
+      [totalPages]="dataDataTable.totalPages" (buttonEvent1)="buttonEvent1($event)"
+      (changePageSortSearch)="changePageSortSearch($event)" [content]="dataDataTable.content" [hasOwner]=true>
+  </app-data-table>
+</div>

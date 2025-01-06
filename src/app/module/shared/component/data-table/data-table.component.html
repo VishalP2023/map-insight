@@ -7,7 +7,7 @@
         <div class="data-icons">
             <div class="d-flex ">
               <button *ngIf="permission[0]" class="btn-icon" (click)="multiselect ? buttonEventMultiSelect('add') :buttonEvent('add')" id="add-data"> <i class="fa fa-plus font-icon" aria-hidden="true"> </i></button>
-              <button *ngIf="permission[1]"class="btn-icon" (click)="multiselect ? buttonEventMultiSelect('edit') :buttonEvent('edit')" id="edit-data"> <i class="fa fa-pen font-icon" aria-hidden="true"> </i></button>
+              <button *ngIf="permission[1]"class="btn-icon" (click)="multiselect ? buttonEventMultiSelect('edit') :buttonEvent('edit')" id="edit-data"> <i class="fa fa-pencil font-icon" aria-hidden="true"> </i></button>
               <button *ngIf="permission[2]"class="btn-icon" (click)="multiselect ? buttonEventMultiSelect('delete') :buttonEvent('delete')" id="delete-data"> <i class="fa fa-trash font-icon" aria-hidden="true"> </i></button>
               <button *ngIf="permission[3]" class="btn-icon view" (click)="buttonEvent('view')" id="view-data"> <i  class="fa fa-eye font-icon" aria-hidden="true"></i> </button>
               <button *ngIf="permission[4]" (click)="changeOwner()" class="btn-icon Owner-btn" id="change-owner">Change Owner </button>
