@@ -11,13 +11,13 @@
           {{ dashboardCount?.searchContactsCount }}
         </span>
       </h4>
-      <h4>
+      <h4 *ngIf="userRole === 'ADMIN'">
         Search Geocodes Count: 
         <span (click)="onSearchGeocodesCountClick()">
           {{ dashboardCount.searchGeocodesCount }}
         </span>
       </h4>
-      <h4>
+      <h4 *ngIf="userRole === 'ADMIN'">
         Search Places Count: 
         <span (click)="onSearchPlacesCountClick()">
           {{ dashboardCount.searchPlacesCount }}

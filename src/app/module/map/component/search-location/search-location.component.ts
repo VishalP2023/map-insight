@@ -36,6 +36,7 @@ keywordId!: number;
   defaultValue: Array<MultiSelectData> = [];
   dropdownList: any = [];
   showError: boolean =false;
+  userRole!: string | null;
 
   constructor(private alertServices: AlertService,
     private modalService: BsModalService,
@@ -55,8 +56,7 @@ keywordId!: number;
 
     this.params = this.params.append("page", 0);
     this.params = this.params.append("size", 15);
-   // this.params = this.params.append("location", this.locationForm.value.location);
-   // this.params = this.params.append("sector", this.locationForm.value.sector);
+
     forkJoin({
       tableHeader: this.searchLocationService.getMetadata(),
       tableData: this.searchLocationService.getAll(this.params),
@@ -118,6 +118,10 @@ keywordId!: number;
     }
   }
 
+  getUserRole(){
+    this.userRole = sessionStorage.getItem('userRoles');
+  }
+
   changePageSortSearch(params: HttpParams) {
 
     if (params.get("sort")) {
@@ -133,15 +137,17 @@ keywordId!: number;
     this.params = this.params.delete('sector');
     this.params = this.params.append("location", this.locationForm.value.location);
     this.params = this.params.append("sector", this.locationForm.value.sector);
-    this.params_for_map=this.params_for_map.append("location", this.locationForm.value.location);
-    this.params_for_map=this.params_for_map.append("sector", this.locationForm.value.sector);
 
-    console.log("this.params", this.params)
-    this.searchLocationService
-    .genrateData(this.params_for_map)
-    .subscribe((sucess: any) => {
-      this.dataDataTable = sucess;
-    });
+    if(this.userRole=='ADMIN'){
+      this.params_for_map=this.params_for_map.append("location", this.locationForm.value.location);
+      this.params_for_map=this.params_for_map.append("sector", this.locationForm.value.sector);
+
+      this.searchLocationService
+      .genrateData(this.params_for_map)
+      .subscribe((sucess: any) => {
+        this.dataDataTable = sucess;
+      });
+    }
 
     this.searchLocationService
       .getAll(this.params)
