@@ -7,9 +7,10 @@
   padding: 10px 20px;
 }
 
-.logo {
+.navbar-brand {
   font-size: 1.5em;
   font-weight: bold;
+  margin-right: 30px; /* Adds space between the logo and the menu */
 }
 
 .nav {
@@ -21,20 +22,35 @@
   color: white;
   text-decoration: none;
   font-weight: 500;
+  padding: 5px 10px; /* Adds padding for a button-like appearance */
+  border-radius: 5px; /* Rounded corners for highlighted menu links */
+}
+
+.nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+  color: white;
 }
 
 .nav a.active {
-  border-bottom: 2px solid white;
+  background-color: rgba(255, 255, 255, 0.3); /* Highlight for active link */
+  color: white;
 }
 
 button {
   background-color: transparent;
   color: white;
-  border: none;
+  border: 1px solid white;
   cursor: pointer;
   font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 button:hover {
-  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+#navbarNav{
+  margin-left: 50px;
 }

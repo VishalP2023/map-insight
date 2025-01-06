@@ -6,6 +6,7 @@ import { SearchLocationComponent } from './component/search-location/search-loca
 import { SectorComponent } from './component/sector/sector.component';
 import { GeocodeDatatableComponent } from './component/geocode-datatable/geocode-datatable.component';
 import { GeocodeComponent } from './component/geocode/geocode.component';
+import { DasboardComponent } from './component/dasboard/dasboard.component';
 
 const routes: Routes = [
   {path: "map",component: LayoutComponent,
@@ -25,10 +26,14 @@ const routes: Routes = [
       {
         path:'geo-code',
         component:GeocodeDatatableComponent
-      },      
+      }, 
+      {
+        path:'dashboard',
+        component: DasboardComponent
+      },       
     ]
   },
-  {path: "",redirectTo: "map", pathMatch: "full"},
+  {path: "",redirectTo: "map/dashboard", pathMatch: "full"},
 ];
 
 @NgModule({

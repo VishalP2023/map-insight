@@ -49,7 +49,7 @@ export class GeocodeComponent {
         this.modalRef.onHidden?.next(true);
         this.modalRef.hide();
       }, (error) => {
-         alert(error.error.message);
+         //alert(error.error.message);
          this.alertService.warn(
            error.error.message,
            this.alertOptions

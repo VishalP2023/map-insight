@@ -1,7 +1,7 @@
 <header class="header navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <!-- Logo Section -->
-    <a class="navbar-brand" href="#">MAP INSIGHT</a>
+    <a class="navbar-brand" routerLink="/map/map/dashboard"> <i class="fa fa-map-marker"></i> MAP INSIGHT</a>
     
     <!-- Navbar Toggle Button for Mobile View -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,15 +10,14 @@
     
     <!-- Navbar Links Section - Shifted to the left -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">       
+      <ul class="navbar-nav">
 
         <!-- Conditionally Render Admin or User Links -->
         <ng-container>
           <ng-container *ngIf="userRole === 'ADMIN'">
             <li *ngFor="let link of adminLinks" class="nav-item">
               <a class="nav-link" [routerLink]="link.route" routerLinkActive="active">
-                <!-- <i [class]="link.icon"></i> -->
-                 <span>{{ link.label }}</span>
+                <span>{{ link.label }}</span>
               </a>
             </li>
           </ng-container>
@@ -26,7 +25,6 @@
           <ng-container *ngIf="userRole !== 'ADMIN'">
             <li *ngFor="let link of userLinks" class="nav-item">
               <a class="nav-link" [routerLink]="link.route" routerLinkActive="active">
-                <!-- <i [class]="link.icon"></i>  -->
                 <span>{{ link.label }}</span>
               </a>
             </li>
