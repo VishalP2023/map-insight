@@ -20,6 +20,16 @@
                 <span>{{ link.label }}</span>
               </a>
             </li>
+            <div class="dropdown d-flex align-items-center">
+              <a class=" dropdown-toggle config " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Configuration
+              </a>
+            
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="myKeyConfig()">Key Config</a></li>
+                <li><a class="dropdown-item" (click)="myKeyBind()">Key Bind</a></li>
+              </ul>
+            </div>
           </ng-container>
 
           <ng-container *ngIf="userRole !== 'ADMIN'">
