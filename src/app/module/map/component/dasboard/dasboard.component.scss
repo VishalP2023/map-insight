@@ -3,13 +3,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensures the dashboard takes full height */
+  min-height: 90vh; /* Ensures the dashboard takes full height */
 }
 
 .card.card-centered {
   width: 400px; /* Adjust the width of the card as needed */
   text-align: left;
   margin-bottom: 20px; /* Adds space between the card and the table */
+}
+
+.card-body{
+  cursor: pointer;
 }
 
 .card-body h4 {

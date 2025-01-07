@@ -24,7 +24,7 @@ export class DashboardService {
         const options = {
           params: param,
         };
-        return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/dashboard/place-details?months=1&`, options);
+        return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/dashboard/place-details?`, options);
       }
 
 
@@ -37,7 +37,7 @@ export class DashboardService {
         const options = {
           params: param,
         };
-        return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/dashboard/geocode-details?months=1&`, options);
+        return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/dashboard/geocode-details?`, options);
       }
 
       getContactMetadata(): Observable<TableHeaderMetaData> {
@@ -49,6 +49,6 @@ export class DashboardService {
         const options = {
           params: param,
         };
-        return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/dashboard/contact-details?months=1&`, options);
+        return this.httpClient.get<{ content: Array<any>, totalPages: number }>(`${environment.baseUrl}/dashboard/contact-details?`, options);
       }
   }
