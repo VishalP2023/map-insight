@@ -12,6 +12,7 @@ import { TableHeaderMetaData } from 'src/app/module/shared/model/table-header-li
 import { AlertService } from 'src/app/module/shared/service/alert.service';
 import { GeocodeComponent } from '../geocode/geocode.component';
 import { DashboardService } from '../../service/dashboard.service';
+import { MonthOption } from '../../models/month.model';
 
 @Component({
   selector: 'app-dasboard',
@@ -32,7 +33,22 @@ export class DasboardComponent {
   title:string = "Dashboard";
   userRole!: string | null;
   selectedApiType: 'contacts' | 'geocodes' | 'places' = 'contacts';
-
+  selectedMonth: number = 1; // Default to 1 month
+  months: MonthOption[] = [
+    new MonthOption('1 month', 1),
+    new MonthOption('2 months', 2),
+    new MonthOption('3 months', 3),
+    new MonthOption('4 months', 4),
+    new MonthOption('5 months', 5),
+    new MonthOption('6 months', 6),
+    new MonthOption('7 months', 7),
+    new MonthOption('8 months', 8),
+    new MonthOption('9 months', 9),
+    new MonthOption('10 months', 10),
+    new MonthOption('11 months', 11),
+    new MonthOption('12 months', 12)
+  ];
+  
   constructor(private alertServices: AlertService,
       private modalService: BsModalService,
       private router: Router,
@@ -48,6 +64,7 @@ export class DasboardComponent {
       this.getUserRole();
       this.params = this.params.append("page", 0);
       this.params = this.params.append("size", 15);
+      this.params = this.params.append('months', this.selectedMonth)
       this.params= this.params.append("name",'');
       forkJoin({
         tableHeader: this.dashboardService.getContactMetadata(),
@@ -118,6 +135,13 @@ export class DasboardComponent {
 
     // Trigger the table update
     this.changePageSortSearch(this.params, apiType);
+  }
+
+  // Function to handle month change
+  onMonthChange() {
+    this.params = this.params.delete('months');
+    this.params=this.params.append('months', this.selectedMonth)
+    this.changePageSortSearch(this.params, this.selectedApiType);
   }
 
 }

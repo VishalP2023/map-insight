@@ -1,38 +1,51 @@
 <div class="d-flex justify-content-between mb-2">
-  <h4>Dasboard</h4>
+  <h4 class="mr-3">Dashboard</h4> <!-- Dashboard heading -->
+  
+  <!-- Month Dropdown -->
+  <div class="form-group d-flex align-items-center">
+    <label for="monthSelect" class="mr-2">Select Months:</label>
+    <select id="monthSelect" class="form-control" [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+      <!-- Blank option to serve as a default "select month" placeholder -->
+      <option value="" disabled selected>Select Months</option>
+      <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+    </select>
+  </div>
 </div>
-<div class="row mtop ">
-  <div class="col-md-4">
+
+<!-- Data Cards Section -->
+<div class="row mtop justify-content-center">
+  <!-- Center the card for Contact Details Count -->
+    <div class="col-md-4" [ngClass]="{'d-flex justify-content-center': userRole !== 'ADMIN'}">
       <div class="card">
-          <div class="card-body p-2">
-              <div class="d-flex  justify-content-center">
-                  <h3 class="card-title count "><span (click)="onSearchCountClick('contacts')">
+          <div class="card-body p-2" (click)="onSearchCountClick('contacts')">
+              <div class="d-flex justify-content-center">
+                  <h3 class="card-title count "><span>
                     {{ dashboardCount?.searchContactsCount }}
                   </span></h3>
               </div>
-              <h4 class="card-text text-center">Search Contact Details Count
-              </h4>
+              <h4 class="card-text text-center">Search Contact Details Count</h4>
           </div>
       </div>
   </div>
+
   <div class="col-md-4" *ngIf="userRole === 'ADMIN'">
       <div class="card">
-          <div class="card-body p-2 ">
-              <div class="d-flex   justify-content-center">
-                  <h3 class="card-title count "><span (click)="onSearchCountClick('geocodes')">
+          <div class="card-body p-2 " (click)="onSearchCountClick('geocodes')">
+              <div class="d-flex justify-content-center">
+                  <h3 class="card-title count "><span>
                     {{ dashboardCount.searchGeocodesCount }}
                   </span></h3>
               </div>
-              <h4 class="card-text  text-center ">Search Geocodes Count
-              </h4>
+              <h4 class="card-text text-center">Search Geocodes Count</h4>
           </div>
       </div>
   </div>
+
   <div class="col-md-4" *ngIf="userRole === 'ADMIN'">
-      <div class="card ">
-          <div class="card-body p-2">
-              <div class="d-flex  justify-content-center">
-                  <h3 class="card-title count "> <span (click)="onSearchCountClick('places')">
+      <div class="card">
+          <div class="card-body p-2" (click)="onSearchCountClick('places')">
+              <div class="d-flex justify-content-center">
+                  <h3 class="card-title count "><span>
                     {{ dashboardCount.searchPlacesCount }}
                   </span></h3>
               </div>
@@ -41,32 +54,9 @@
       </div>
   </div>
 </div>
+
+<!-- Data Table Section -->
 <div class="dashboard">
-  <!-- Card with Counts (Center the card) -->
-
-  <!-- <div class="card card-centered">
-    <div class="card-body">
-      <h4>
-        Search Contact Details Count: 
-        <span (click)="onSearchCountClick('contacts')">
-          {{ dashboardCount?.searchContactsCount }}
-        </span>
-      </h4>
-      <h4 *ngIf="userRole === 'ADMIN'">
-        Search Geocodes Count: 
-        <span (click)="onSearchCountClick('geocodes')">
-          {{ dashboardCount.searchGeocodesCount }}
-        </span>
-      </h4>
-      <h4 *ngIf="userRole === 'ADMIN'">
-        Search Places Count: 
-        <span (click)="onSearchCountClick('places')">
-          {{ dashboardCount.searchPlacesCount }}
-        </span>
-      </h4>
-    </div>
-  </div> -->
-
   <!-- Data Table (Full Width) -->
   <app-data-table [title]="title" [cardH]="true" [columns]="columnsMetadata" [permission]="permission"
       [totalPages]="dataDataTable.totalPages" (buttonEvent1)="buttonEvent1($event)"
