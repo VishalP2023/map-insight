@@ -1,9 +1,50 @@
 <div class="d-flex justify-content-between mb-2">
   <h4>Dasboard</h4>
 </div>
+<div class="row mtop ">
+  <div class="col-md-4">
+      <div class="card">
+          <div class="card-body p-2">
+              <div class="d-flex  justify-content-center">
+                  <h3 class="card-title count "><span (click)="onSearchCountClick('contacts')">
+                    {{ dashboardCount?.searchContactsCount }}
+                  </span></h3>
+              </div>
+              <h4 class="card-text text-center">Search Contact Details Count
+              </h4>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4" *ngIf="userRole === 'ADMIN'">
+      <div class="card">
+          <div class="card-body p-2 ">
+              <div class="d-flex   justify-content-center">
+                  <h3 class="card-title count "><span (click)="onSearchCountClick('geocodes')">
+                    {{ dashboardCount.searchGeocodesCount }}
+                  </span></h3>
+              </div>
+              <h4 class="card-text  text-center ">Search Geocodes Count
+              </h4>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4" *ngIf="userRole === 'ADMIN'">
+      <div class="card ">
+          <div class="card-body p-2">
+              <div class="d-flex  justify-content-center">
+                  <h3 class="card-title count "> <span (click)="onSearchCountClick('places')">
+                    {{ dashboardCount.searchPlacesCount }}
+                  </span></h3>
+              </div>
+              <h4 class="card-text text-center">Search Places Count</h4>
+          </div>
+      </div>
+  </div>
+</div>
 <div class="dashboard">
   <!-- Card with Counts (Center the card) -->
-  <div class="card card-centered">
+
+  <!-- <div class="card card-centered">
     <div class="card-body">
       <h4>
         Search Contact Details Count: 
@@ -24,7 +65,7 @@
         </span>
       </h4>
     </div>
-  </div>
+  </div> -->
 
   <!-- Data Table (Full Width) -->
   <app-data-table [title]="title" [cardH]="true" [columns]="columnsMetadata" [permission]="permission"
