@@ -10,6 +10,7 @@ import { MultiSelectData } from 'src/app/module/shared/model/multi-selelect-drop
 import { AlertService } from 'src/app/module/shared/service/alert.service';
 import { SearchLocationService } from '../../service/search-location.service';
 import { environment } from 'src/environments/environment';
+import { Location } from '../../models/place.model';
 
 @Component({
   selector: 'app-export',
@@ -29,6 +30,7 @@ keywordId!: number;
   userRole!: string | null;
   cardDivHeight!: string;
   divHeight!: number;
+  locations:Array<Location>=[];
 
   constructor(private alertServices: AlertService,
     private searchLocationService: SearchLocationService,
@@ -40,6 +42,7 @@ keywordId!: number;
 
   ngOnInit(): void {
     this.getKeywords();
+    this.getLocation();
     this.locationForm = this.fb.group({
       sector: [''],
       location: ['']
@@ -135,5 +138,11 @@ keywordId!: number;
   close() {
     this.modalRef.onHidden?.next(false);
     this.modalRef.hide();
+  }
+
+  getLocation(){
+    this.searchLocationService.getLocation().subscribe((response: any) => {
+      this.locations = response
+    })
   }
 }

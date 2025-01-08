@@ -15,6 +15,7 @@ import { SearchLocationService } from '../../service/search-location.service';
 import { ContactDetailsComponent } from '../contact-details/contact-details.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MultiSelectData } from 'src/app/module/shared/model/multi-selelect-dropdown.model';
+import { Location } from '../../models/place.model';
 
 @Component({
   selector: 'app-search-location',
@@ -37,6 +38,7 @@ keywordId!: number;
   dropdownList: any = [];
   showError: boolean =false;
   userRole!: string | null;
+  locations:Location[]=[];
 
   constructor(private alertServices: AlertService,
     private modalService: BsModalService,
@@ -49,6 +51,8 @@ keywordId!: number;
 
   ngOnInit(): void {
     this.getKeywords();
+    this.getLocation();
+    this.getUserRole();
     this.locationForm = this.fb.group({
       sector: ['', Validators.required], // 'sector' dropdown with required validation
       location: ['', Validators.required] // 'location' textbox with required validation
@@ -69,6 +73,12 @@ keywordId!: number;
       })
 
       this.getSectorData()
+  }
+
+  getLocation(){
+    this.searchLocationService.getLocation().subscribe((response: any) => {
+      this.locations = response
+    })
   }
 
   getSectorData() {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
-import { Place, Sector } from '../models/place.model';
+import { Location, Place, Sector } from '../models/place.model';
 import { PlaceContact } from '../models/place-contact.model';
 
 @Injectable()
@@ -51,5 +51,10 @@ export class SearchLocationService {
       getSectorData(): Observable<Sector> {
         return this.httpClient.get<Sector>(
           `${environment.baseUrl}/sector/get-list`);
+      } 
+
+      getLocation(): Observable<Location> {
+        return this.httpClient.get<Location>(
+          `${environment.baseUrl}/geocode/get-list`);
       } 
 }
