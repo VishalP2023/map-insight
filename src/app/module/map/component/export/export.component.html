@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h6 class="card-title">Data Export</h6>
+  <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" [style.--cardHeight]="cardDivHeight">
+  <form class="w-100 p-2" [formGroup]="locationForm">
+  <div class="row col-lg-12 mb-2">
+      <div class="col-lg-4">
+        <div class="labels">Sector
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <app-multiselect-drop-down [tabIndex]="0"  [name]="'sector'" [defaultValue]="defaultValue" (sleetedData)="selectedDataKeywords($event)" [dropdownList]="dropdownList" (focus)="onErrorScope()">
+        </app-multiselect-drop-down>
+    </div>
+  </div>
+  <div class="row col-lg-12 mb-2">
+    <div class="col-lg-4">
+      <div class="labels">Location
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" id="code"
+        formControlName="location">
+  </div>
+  </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" id="sector-submit"
+      (click)="exportData()">Export</button>
+    <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+  </div>

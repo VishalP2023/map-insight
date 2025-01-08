@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './module/auth/service/map-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MapModule } from './module/map/map.module';
+import { SharedModule } from './module/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MapModule } from './module/map/map.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MapModule
+    MapModule,
+    SharedModule
   ],
   providers: [
     {
