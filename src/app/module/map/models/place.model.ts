@@ -23,3 +23,7 @@ export interface Action {
     action: Action[];
   }
   
+  export interface Location {
+    id: number;
+    address: string;
+  }

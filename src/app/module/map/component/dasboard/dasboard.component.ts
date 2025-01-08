@@ -124,7 +124,7 @@ export class DasboardComponent {
 
   // Fetch counts from the API
   fetchDataCounts() {
-    this.dashboardService.getDashboardCount().subscribe((response: any) => {
+    this.dashboardService.getDashboardCount(1).subscribe((response: any) => {
       this.dashboardCount = response;
     })
   }
@@ -142,6 +142,9 @@ export class DasboardComponent {
     this.params = this.params.delete('months');
     this.params=this.params.append('months', this.selectedMonth)
     this.changePageSortSearch(this.params, this.selectedApiType);
+    this.dashboardService.getDashboardCount(this.selectedMonth).subscribe((response: any) => {
+      this.dashboardCount = response;
+    })
   }
 
 }

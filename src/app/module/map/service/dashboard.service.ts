@@ -10,9 +10,9 @@ export class DashboardService {
 
   constructor(private httpClient: HttpClient) { }
   
-  getDashboardCount(): Observable<any> {
+  getDashboardCount(count:number): Observable<any> {
         return this.httpClient.get<any>(
-              `${environment.baseUrl}/dashboard/all-counts?months=3`);
+              `${environment.baseUrl}/dashboard/all-counts?months=${count}`);
     } 
 
     getPlaceMetadata(): Observable<TableHeaderMetaData> {

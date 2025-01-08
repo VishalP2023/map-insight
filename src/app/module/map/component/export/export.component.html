@@ -16,14 +16,15 @@
   </div>
   <div class="row col-lg-12 mb-2">
     <div class="col-lg-4">
-      <div class="labels">Location
-      </div>
+        <div class="labels">Location</div>
     </div>
     <div class="col-lg-8">
-      <input type="text" class="form-control" id="code"
-        formControlName="location">
-  </div>
-  </div>
+        <select class="form-control" id="location" formControlName="location">
+            <option value="">Select Location</option>
+            <option *ngFor="let location of locations" [value]="location.id">{{ location.address }}</option>
+        </select>
+    </div>
+</div>
   </form>
   </div>
   <div class="modal-footer">
