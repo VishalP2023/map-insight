@@ -21,6 +21,7 @@ import { GeocodeService } from './service/geocode.service';
 import { ContactDetailsComponent } from './component/contact-details/contact-details.component';
 import { DasboardComponent } from './component/dasboard/dasboard.component';
 import { DashboardService } from './service/dashboard.service';
+import { ExportComponent } from './component/export/export.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DashboardService } from './service/dashboard.service';
     GeocodeComponent,
     GeocodeDatatableComponent,
     ContactDetailsComponent,
-    DasboardComponent
+    DasboardComponent,
+    ExportComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,7 @@ import { DashboardService } from './service/dashboard.service';
     
   ],
   exports:[ KeywordDatatableComponentComponent,
-    KeywordFormComponent],
+    KeywordFormComponent,ExportComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers:[BsModalService, KeywordService, SearchLocationService,SectorService, GeocodeService, DashboardService]
 

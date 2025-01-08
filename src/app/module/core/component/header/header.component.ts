@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ExportComponent } from 'src/app/module/map/component/export/export.component';
 import { BindKeyComponent } from 'src/app/module/shared/component/bind-key/bind-key.component';
 import { KeyConfigComponent } from 'src/app/module/shared/component/key-config/key-config.component';
 import { modalOptionsDialogRighted } from 'src/app/module/shared/model/constants.model';
@@ -47,6 +48,11 @@ export class HeaderComponent {
   myKeyBind() {
     let modalRef: BsModalRef
   modalRef = this.modalService.show(BindKeyComponent, { ...modalOptionsDialogRighted });
+  }
+
+  exportData() {
+    let modalRef: BsModalRef
+  modalRef = this.modalService.show(ExportComponent, { ...modalOptionsDialogRighted });
   }
 }
 
